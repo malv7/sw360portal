@@ -1,5 +1,5 @@
 /*
- * Copyright Siemens AG, 2014-2017. Part of the SW360 Portal Project.
+ * Copyright Siemens AG, 2014-2018. Part of the SW360 Portal Project.
  *
  * SPDX-License-Identifier: EPL-1.0
  *
@@ -244,6 +244,20 @@ public class ThriftValidate {
         attachment.setType(TYPE_ATTACHMENT);
     }
 
+    public static void validateLicense(License license) throws SW360Exception {
+        if (license.isSetId()) {
+            assertId(license.getId());
+        }
+
+        if (license.isSetShortname()) {
+            assertId(license.getShortname());
+        }
+
+        if (license.isSetId() && license.isSetShortname()) {
+            String message = "license short name must be equal with license id";
+            assertEquals(license.getId(), license.getShortname(), message);
+        }
+    }
 
     public static void prepareProject(Project project) throws SW360Exception {
         assertNotEmpty(project.getName());
@@ -253,5 +267,4 @@ public class ThriftValidate {
         project.unsetPermissions();
         project.unsetReleaseClearingStateSummary();
     }
-
 }

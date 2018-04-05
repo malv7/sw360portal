@@ -1,5 +1,5 @@
 /*
- * Copyright Siemens AG, 2014-2017. Part of the SW360 Portal Project.
+ * Copyright Siemens AG, 2014-2018. Part of the SW360 Portal Project.
  *
  * SPDX-License-Identifier: EPL-1.0
  *
@@ -59,6 +59,7 @@ public class SW360Assert {
 
     public static void assertId(String id) throws SW360Exception {
         assertNotEmpty(id, "Invalid empty ID!");
+        // thomas maier: add validate check for document id (special characters ...)
     }
 
     public static <T> void assertIds(Collection<T> collection, Function<? super T, Boolean> idSetExtractor) throws SW360Exception {
